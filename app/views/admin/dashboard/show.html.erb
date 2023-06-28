@@ -1,2 +1,20 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h1>Dashboard</h1>
+<p>
+We have <%= @categories.count %> Categories
+  <div class="well">
+    <%= link_to 'Edit Products', admin_products_path, class: 'btn btn-primary btn-large' %>
+  </div>
+</p>
+<ul>
+<% @categories.each do |category| %>
+<% puts category.id %>
+  <li>
+    <%= category.name %> - (<%= category.products.count%> products)
+      <ul>
+        <% category.products.each do |product| %>
+          <li><%= product.name %></li>
+        <% end %>
+      </ul>
+  </li>
+<% end %>
+</ul>
