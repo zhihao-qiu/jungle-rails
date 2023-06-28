@@ -5,8 +5,9 @@
   </header>
 
 <% if enhanced_cart.count.zero?%>
-  <div class="alert alert-warning">
-    Your Cart is EMPTY,  <span><%= link_to "Go Shopping today", root_path%></span></a>
+  <div class="alert alert-info">
+    <span>Your Cart is EMPTY</span><br>
+    <span><%= link_to "Go Shopping", root_path, class: 'btn btn-lg btn-primary' %></span>
   </div>
 <% else %>
   <div class="panel panel-default items">
