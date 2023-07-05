@@ -36,9 +36,6 @@ describe('User Signup & Login', () => {
   });
 
   context('login sequence only', () => {
-    beforeEach(() => {
-      cy.visit('http://localhost:3000');
-    });
 
     it("should login and navigate to homepage", () => {
       cy.contains('Login')
