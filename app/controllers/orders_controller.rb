@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
+<<<<<<< HEAD
   before_action :authorize
+=======
+  # before_filter :authorize
+>>>>>>> feature/user-auth
   def show
     @order = Order.includes(line_items: :product).find(params[:id])
 
