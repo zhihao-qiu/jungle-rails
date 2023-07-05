@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   def show
     @order = Order.includes(line_items: :product).find(params[:id])
 
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Jungle Order",
       currency:    'cad'
     )
   end
@@ -54,6 +54,9 @@ class OrdersController < ApplicationController
       )
     end
     order.save!
+
+    # Tell the Mailer to send a receipt email after save
+    OrderMailer.with(order: order).order_email.deliver_now
     order
   end
 

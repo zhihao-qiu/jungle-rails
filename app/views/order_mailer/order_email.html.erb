@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>HI, <%= @order.email %></h1>
+    <p>
+      Thank you for your order. Your transaction has been processed and your credit card was approved.
+      This email is your receipt and proof of purchase.
+    </p>
+    <table>
+      <tr>
+        <td>name</td>
+        <td>quantity</td>
+        <td>price</td>
+      </tr>
+      <% @order.line_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td>$<%= item.item_price %></td>
+      </tr>
+      <% end %>
+    </table>
+    <p>Total: $<%= sprintf('%.2f', @order.total_cents/100.0) %></p>
+  </body>
+</html>
